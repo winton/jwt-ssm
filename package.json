@@ -1,0 +1,64 @@
+{
+  "name": "jwt-ssm",
+  "version": "0.0.1",
+  "description": "Read, write, and rotate JWT tokens with SSM",
+  "main": "dist/index.js",
+  "bin": {
+    "jwt-ssm": "./bin/jwt-ssm"
+  },
+  "scripts": {
+    "build": "./bin/build",
+    "release": "./bin/release",
+    "test": "mocha",
+    "update": "ncu -u",
+    "watch": "tsc -b -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/winton/jwt-ssm.git"
+  },
+  "author": "Winton Welsh <mail@wintoni.us>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/winton/jwt-ssm/issues"
+  },
+  "homepage": "https://github.com/winton/jwt-ssm#readme",
+  "devDependencies": {
+    "@types/jsonwebtoken": "8.3.7",
+    "@types/mocha": "5.2.7",
+    "@types/node": "13.5.0",
+    "@typescript-eslint/eslint-plugin": "2.17.0",
+    "@typescript-eslint/parser": "2.17.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.9.0",
+    "eslint-plugin-prettier": "3.1.2",
+    "expect": "25.1.0",
+    "husky": "4.2.1",
+    "lint-staged": "10.0.2",
+    "mocha": "7.0.0",
+    "npm-check-updates": "4.0.1",
+    "prettier": "1.19.1",
+    "release-it": "12.4.3",
+    "semver": "7.1.1",
+    "typescript": "3.7.5"
+  },
+  "dependencies": {
+    "aws-sdk": "2.609.0",
+    "jsonwebtoken": "8.5.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm test"
+    }
+  },
+  "lint-staged": {
+    "*.{css,json,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{js,jsx,ts}": [
+      "eslint --ignore-path .gitignore --fix",
+      "git add"
+    ]
+  }
+}
