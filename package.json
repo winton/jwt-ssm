@@ -1,6 +1,6 @@
 {
   "name": "jwt-ssm",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Generate and verify JWT tokens with SSM",
   "main": "dist/index.js",
   "bin": {
