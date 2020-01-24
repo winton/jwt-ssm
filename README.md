@@ -11,19 +11,19 @@ npm install jwt-ssm
 ### Rotate private key
 
 ```bash
-jwt-ssm rotate my-ssm-key
+jwt-ssm rotate /myNamespace/myKey
 ```
 
 ### Generate token
 
 ```bash
-jwt-ssm token my-ssm-key my-jwt-subject
+jwt-ssm token /myNamespace/myKey myJwtSubject
 ```
 
 ### Verify token
 
 ```bash
-jwt-ssm verify my-ssm-key my-token
+jwt-ssm verify /myNamespace/myKey eyJhbGciOiJIUz...
 ```
 
 ## Library
