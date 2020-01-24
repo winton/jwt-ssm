@@ -1,6 +1,6 @@
 # jwt-ssm
 
-Generate and verify JWT tokens with SSM (and [aws-sdk](https://github.com/aws/aws-sdk-js))
+Generate and verify JWT tokens with SSM
 
 ## Install
 
