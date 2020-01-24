@@ -1,10 +1,14 @@
 # jwt-ssm
 
+Generate and verify JWT tokens with SSM (and [aws-sdk](https://github.com/aws/aws-sdk-js))
+
 ## Install
 
 ```bash
 npm install jwt-ssm
 ```
+
+Make sure your environment is [configured for AWS](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
 
 ## CLI usage
 
