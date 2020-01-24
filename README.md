@@ -31,14 +31,14 @@ jwt-ssm verify /myNamespace/myKey eyJhbGciOiJIUz...
 ```typescript
 import { rotate, token, verify } from "jwt-ssm"
 ;(async (): Promise<void> => {
-  await rotate("my-ssm-key")
+  await rotate("/myNamespace/myKey")
 
   const myToken = await token(
-    "my-ssm-key",
-    "my-jwt-subject"
+    "/myNamespace/myKey",
+    "myJwtSubject"
   )
 
-  if (await verify("my-ssm-key", myToken)) {
+  if (await verify("/myNamespace/myKey", myToken)) {
     console.log("verified!")
   }
 })()
