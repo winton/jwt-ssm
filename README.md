@@ -1,6 +1,6 @@
 # jwt-ssm
 
-Generate and verify JWT tokens with SSM
+Generate and verify JWT tokens with [AWS SSM Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html)
 
 ## Install
 
