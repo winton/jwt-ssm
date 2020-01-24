@@ -6,7 +6,7 @@
 npm install jwt-ssm
 ```
 
-## CLI
+## CLI usage
 
 ### Rotate private key
 
@@ -26,16 +26,20 @@ jwt-ssm token /myNamespace/myKey myJwtSubject
 jwt-ssm verify /myNamespace/myKey eyJhbGciOiJIUz...
 ```
 
-## Library
+## Library usage
 
 ```typescript
 import { rotate, token, verify } from "jwt-ssm"
+;(async (): Promise<void> => {
+  await rotate("my-ssm-key")
 
-rotate("my-ssm-key")
+  const myToken = await token(
+    "my-ssm-key",
+    "my-jwt-subject"
+  )
 
-const myToken = token("my-ssm-key", "my-jwt-subject")
-
-if (verify("my-ssm-key", myToken)) {
-  console.log("verified!")
-}
+  if (await verify("my-ssm-key", myToken)) {
+    console.log("verified!")
+  }
+})()
 ```
