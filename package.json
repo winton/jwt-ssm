@@ -1,7 +1,7 @@
 {
   "name": "jwt-ssm",
   "version": "0.2.0",
-  "description": "Read, write, and rotate JWT tokens with SSM",
+  "description": "Generate and verify JWT tokens with SSM",
   "main": "dist/index.js",
   "bin": {
     "jwt-ssm": "./bin/jwt-ssm"
