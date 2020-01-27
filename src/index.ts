@@ -7,6 +7,17 @@ import jwt from "jsonwebtoken"
 import { getSsm, setSsm } from "./ssm"
 
 export class JwtSsm {
+  static decode(
+    token: string
+  ): Record<string, any> | boolean {
+    try {
+      const decoded = jwt.decode(token)
+      return decoded["sub"]
+    } catch (err) {
+      return false
+    }
+  }
+
   static async rotate(
     ssmName: string,
     privateKey: string

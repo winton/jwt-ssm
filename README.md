@@ -30,6 +30,12 @@ jwt-ssm token /myNamespace/myKey myJwtSubject
 jwt-ssm verify /myNamespace/myKey eyJhbGciOiJIUz...
 ```
 
+### Decode token (without verification)
+
+```bash
+jwt-ssm decode eyJhbGciOiJIUz...
+```
+
 ## Library usage
 
 ```typescript
@@ -41,6 +47,10 @@ import { rotate, token, verify } from "jwt-ssm"
     "/myNamespace/myKey",
     "myJwtSubject"
   )
+
+  if (decode(myToken)) {
+    console.log("decoded!")
+  }
 
   if (await verify("/myNamespace/myKey", myToken)) {
     console.log("verified!")
