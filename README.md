@@ -39,20 +39,20 @@ jwt-ssm decode eyJhbGciOiJIUz...
 ## Library usage
 
 ```typescript
-import { rotate, token, verify } from "jwt-ssm"
+import JwtSsm from "jwt-ssm"
 ;(async (): Promise<void> => {
-  await rotate("/myNamespace/myKey")
+  await JwtSsm.rotate("/myNamespace/myKey")
 
-  const myToken = await token(
+  const myToken = await JwtSsm.token(
     "/myNamespace/myKey",
     "myJwtSubject"
   )
 
-  if (decode(myToken)) {
+  if (JwtSsm.decode(myToken)) {
     console.log("decoded!")
   }
 
-  if (await verify("/myNamespace/myKey", myToken)) {
+  if (await JwtSsm.verify("/myNamespace/myKey", myToken)) {
     console.log("verified!")
   }
 })()
