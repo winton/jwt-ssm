@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken"
 
 import { getSsm, setSsm } from "./ssm"
 
-export class JwtSsm {
+export default class JwtSsm {
   static decode(
     token: string
   ): string | Record<string, any> | boolean {

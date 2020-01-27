@@ -1,5 +1,5 @@
 import expect from "./expect"
-import { JwtSsm } from "../src"
+import JwtSsm from "../src"
 
 describe("jwtSsm", () => {
   it("should instantiate", () => {
