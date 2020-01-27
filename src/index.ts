@@ -37,11 +37,9 @@ export default class JwtSsm {
     return await setSsm(ssmName, key)
   }
 
-  static async token(
-    ssmName: string,
-    subject: string
-  ): Promise<string> {
-    return jwt.sign({ sub: subject }, await getSsm(ssmName))
+  static async token(ssmName: string): Promise<string> {
+    const sub = ssmName.split("/")[2]
+    return jwt.sign({ sub }, await getSsm(ssmName))
   }
 
   static async verify(
