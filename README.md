@@ -1,6 +1,6 @@
 # jwt-ssm
 
-Generate and verify JWT tokens with [AWS SSM Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html)
+Generate and verify JWT tokens with [AWS SSM Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) and [GCP Secret Manager](https://cloud.google.com/secret-manager)
 
 ## Install
 
@@ -8,7 +8,7 @@ Generate and verify JWT tokens with [AWS SSM Parameter Store](https://docs.aws.a
 npm install jwt-ssm
 ```
 
-Make sure your environment is [configured for AWS](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
+Make sure your environment is [configured for AWS](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html) and [GCP](https://cloud.google.com/docs/authentication/getting-started).
 
 ## CLI usage
 

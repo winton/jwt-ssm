@@ -7,7 +7,7 @@ if (!AWS.config.region) {
 
 const ssm = new SSM()
 
-export async function getSsm(
+export async function getAwsSecret(
   name: string
 ): Promise<string> {
   const request = await ssm
@@ -17,7 +17,7 @@ export async function getSsm(
   return request.Parameter.Value
 }
 
-export async function setSsm(
+export async function setAwsSecret(
   name: string,
   value: string
 ): Promise<

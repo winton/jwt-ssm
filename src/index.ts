@@ -4,7 +4,11 @@ import { SSM, AWSError } from "aws-sdk"
 import { PromiseResult } from "aws-sdk/lib/request"
 import jwt from "jsonwebtoken"
 
-import { getSsm, setSsm } from "./ssm"
+import { getAwsSecret, setAwsSecret } from "./awsSecret"
+import {
+  getGcloudSecret,
+  setGcloudSecret,
+} from "./gcloudSecret"
 
 export default class JwtSsm {
   static decode(
@@ -18,12 +22,23 @@ export default class JwtSsm {
     }
   }
 
+  static async getPrivateKey(
+    ssmName: string
+  ): Promise<string> {
+    if (
+      process.env.GOOGLE_CLOUD_PROJECT ||
+      process.env.GOOGLE_APPLICATION_CREDENTIALS
+    ) {
+      return await getGcloudSecret(ssmName)
+    } else {
+      return await getAwsSecret(ssmName)
+    }
+  }
+
   static async rotate(
     ssmName: string,
     privateKey: string
-  ): Promise<
-    PromiseResult<SSM.PutParameterResult, AWSError>
-  > {
+  ): Promise<any> {
     const date = new Date().valueOf().toString()
     const random = Math.random().toString()
 
@@ -34,22 +49,29 @@ export default class JwtSsm {
         .update(date + random)
         .digest("hex")
 
-    return await setSsm(ssmName, key)
+    return await Promise.all([
+      setAwsSecret(ssmName, key),
+      setGcloudSecret(ssmName, key),
+    ])
   }
 
   static async token(ssmName: string): Promise<string> {
     const sub = ssmName.split("/")[2]
-    return jwt.sign({ sub }, await getSsm(ssmName))
+    return jwt.sign(
+      { sub },
+      await this.getPrivateKey(ssmName)
+    )
   }
 
   static async verify(
     ssmName: string,
     token: string
   ): Promise<string | Record<string, any> | boolean> {
-    const privateKey = await getSsm(ssmName)
-
     try {
-      const decoded = jwt.verify(token, privateKey)
+      const decoded = jwt.verify(
+        token,
+        await this.getPrivateKey(ssmName)
+      )
       return decoded
     } catch (err) {
       return false
