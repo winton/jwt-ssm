@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "$0")/../"
+cd "$(dirname "$(readlink "$0")")/../"
 
 npx ts-node "$(pwd)/src/cli.ts" "$1" "$2" "$3"
