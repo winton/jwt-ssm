@@ -2,4 +2,4 @@
 
 cd "$(dirname "$0")/../"
 
-npx ts-node src/cli.ts "$1" "$2" "$3"
+npx ts-node "$(pwd)/src/cli.ts" "$1" "$2" "$3"
