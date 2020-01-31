@@ -21,7 +21,7 @@ jwt-ssm rotate /myNamespace/myKey
 ### Generate token
 
 ```bash
-jwt-ssm token /myNamespace/myKey myJwtSubject
+jwt-ssm token /myNamespace/myKey
 ```
 
 ### Verify token
