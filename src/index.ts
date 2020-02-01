@@ -1,11 +1,9 @@
 import crypto from "crypto"
-
-import { SSM, AWSError } from "aws-sdk"
-import { PromiseResult } from "aws-sdk/lib/request"
 import jwt from "jsonwebtoken"
 
 import { getAwsSecret, setAwsSecret } from "./awsSecret"
 import {
+  GCP,
   getGcloudSecret,
   setGcloudSecret,
 } from "./gcloudSecret"
@@ -25,10 +23,7 @@ export default class JwtSsm {
   static async getPrivateKey(
     ssmName: string
   ): Promise<string> {
-    if (
-      process.env.GOOGLE_CLOUD_PROJECT ||
-      process.env.GOOGLE_APPLICATION_CREDENTIALS
-    ) {
+    if (GCP) {
       return await getGcloudSecret(ssmName)
     } else {
       return await getAwsSecret(ssmName)
