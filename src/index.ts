@@ -57,12 +57,13 @@ export default class JwtSsm {
     return key
   }
 
+  static sign(user: string, privateKey: string): string {
+    return jwt.sign({ sub: user }, privateKey)
+  }
+
   static async token(ssmName: string): Promise<string> {
     const sub = ssmName.split("/")[2]
-    return jwt.sign(
-      { sub },
-      await this.getPrivateKey(ssmName)
-    )
+    return this.sign(sub, await this.getPrivateKey(ssmName))
   }
 
   static async verify(
