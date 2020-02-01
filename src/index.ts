@@ -38,7 +38,7 @@ export default class JwtSsm {
   static async rotate(
     ssmName: string,
     privateKey: string
-  ): Promise<any> {
+  ): Promise<string> {
     const date = new Date().valueOf().toString()
     const random = Math.random().toString()
 
@@ -49,10 +49,12 @@ export default class JwtSsm {
         .update(date + random)
         .digest("hex")
 
-    return await Promise.all([
+    await Promise.all([
       setAwsSecret(ssmName, key),
       setGcloudSecret(ssmName, key),
     ])
+
+    return key
   }
 
   static async token(ssmName: string): Promise<string> {
