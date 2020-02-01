@@ -37,7 +37,7 @@ export default class JwtSsm {
 
   static async rotate(
     ssmName: string,
-    privateKey: string
+    privateKey?: string
   ): Promise<string> {
     const date = new Date().valueOf().toString()
     const random = Math.random().toString()
