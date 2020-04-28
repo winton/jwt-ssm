@@ -1,6 +1,6 @@
 {
   "name": "jwt-ssm",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "description": "Generate and verify JWT tokens with AWS SSM Parameter Store",
   "main": "dist/index.js",
   "bin": {
