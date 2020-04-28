@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken"
 
 import { getAwsSecret, setAwsSecret } from "./awsSecret"
 import {
-  GCP,
+  GCP_PROJECT,
   getGcloudSecret,
   setGcloudSecret,
 } from "./gcloudSecret"
@@ -23,7 +23,7 @@ export default class JwtSsm {
   static async getPrivateKey(
     ssmName: string
   ): Promise<string> {
-    if (GCP) {
+    if (GCP_PROJECT) {
       return await getGcloudSecret(ssmName)
     } else {
       return await getAwsSecret(ssmName)
